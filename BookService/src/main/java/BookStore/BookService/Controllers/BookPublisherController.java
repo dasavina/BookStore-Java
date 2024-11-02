@@ -27,7 +27,7 @@ public class BookPublisherController {
     // Display list of book-publisher links
     @GetMapping("/bookpublishers")
     public String listBookPublishers(Model model) {
-        model.addAttribute("bookPublishers", bookPublisherService.getAllBookPublishers());
+        model.addAttribute("bookPublishers", bookPublisherService.getAll());
         return "book_publishers";
     }
 

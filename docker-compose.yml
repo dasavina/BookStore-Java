@@ -7,7 +7,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_PASSWORD:
       MYSQL_ROOT_PASSWORD:
-      MYSQL_DATABASE: book-service-database
+      MYSQL_DATABASE: book_service_db
     ports:
       # <Port exposed> : <MySQL Port running inside container>
       - "3306:3306"

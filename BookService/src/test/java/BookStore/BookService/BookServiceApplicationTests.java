@@ -1,5 +1,6 @@
 package BookStore.BookService;
 
+import BookStore.BookService.Entities.Author;
 import BookStore.BookService.Entities.Book;
 import BookStore.BookService.Repositories.BookRepository;
 import io.restassured.RestAssured;
@@ -65,7 +66,8 @@ class BookServiceApplicationTests {
         book.setCover("cover url");
         book.setInStorage(false);
         book.setPrice(BigDecimal.valueOf(100));
-        book.setAuthorID(1);
+        Author author = new Author(1L, "name", "ps", "--");
+        book.setAuthor(author);
         return book;
     }
 }

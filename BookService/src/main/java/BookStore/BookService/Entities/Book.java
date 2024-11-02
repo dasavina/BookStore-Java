@@ -34,13 +34,10 @@ public class Book {
     @JoinColumn(name = "authorID", nullable = false)
     private Author author;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BookPublisher> bookPublishers = new HashSet<>();
-
     // Constructors
     public Book() {}
 
-    public Book(Long id, String name, String description, String genre, String isbn, String cover, boolean inStorage, BigDecimal price, Author author) {
+    public Book(Long id, String name, String description, String genre, String isbn, String cover, boolean inStorage, BigDecimal price, Long authorId, Author author) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -124,13 +121,5 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public Set<BookPublisher> getBookPublishers() {
-        return bookPublishers;
-    }
-
-    public void setBookPublishers(Set<BookPublisher> bookPublishers) {
-        this.bookPublishers = bookPublishers;
     }
 }

@@ -66,7 +66,7 @@ public class BookController {
         existingBook.setCover(book.getCover());
         existingBook.setInStorage(book.isInStorage());
         existingBook.setPrice(book.getPrice());
-        existingBook.setAuthorID(book.getAuthorID());
+        existingBook.setAuthor(book.getAuthor());
 
         // Save the updated book object
         bookService.updateBook(existingBook);
