@@ -1,9 +1,9 @@
 package BookStore.BookService.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="author")
@@ -20,6 +20,10 @@ public class Author {
 
     @Column(name="short_bio")
     private String shortBio;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Book> books = new HashSet<>();
+
 
     public Author() {}
 
