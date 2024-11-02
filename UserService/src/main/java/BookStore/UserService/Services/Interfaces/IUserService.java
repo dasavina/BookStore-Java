@@ -16,4 +16,8 @@ public interface IUserService {
     UserDto updateUser(Long id, UserDto userDto);
 
     void deleteUser(Long id);
+    
+    void addBookToFavorites(Long userId, Long bookId);
+
+    void addAuthorToFavorites(Long userId, Long authorId);
 }

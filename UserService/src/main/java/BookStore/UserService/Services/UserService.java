@@ -2,9 +2,14 @@ package BookStore.UserService.Services;
 
 import BookStore.UserService.DTOs.UserDto;
 import BookStore.UserService.DTOs.UserDtoExtended;
+import BookStore.UserService.Entities.Author;
+import BookStore.UserService.Entities.Book;
 import BookStore.UserService.Entities.User;
+import BookStore.UserService.Repositories.AuthorRepository;
+import BookStore.UserService.Repositories.BookRepository;
 import BookStore.UserService.Repositories.UserRepository;
 import BookStore.UserService.Services.Interfaces.IUserService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +21,16 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements IUserService {
 
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserService(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserService(UserRepository userRepository, AuthorRepository authorRepository, BookRepository bookRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -56,6 +65,26 @@ public class UserService implements IUserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void addBookToFavorites(Long userId, Long bookId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
+
+        user.getFavouriteBooks().add(book);
+        userRepository.save(user);
+    }
+
+    @Transactional
+    @Override
+    public void addAuthorToFavorites(Long userId, Long authorId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        Author author = authorRepository.findById(authorId).orElseThrow(() -> new RuntimeException("Author not found"));
+
+        user.getFavouriteAuthors().add(author);
+        userRepository.save(user);
     }
 }
 
