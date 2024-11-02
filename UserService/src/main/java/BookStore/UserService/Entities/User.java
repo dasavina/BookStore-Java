@@ -57,5 +57,20 @@ public class User {
         this.email = email;
     }
 
+    public Set<Book> getFavouriteBooks() {
+        return favouriteBooks;
+    }
+
+    public void setFavouriteBooks(Set<Book> favouriteBooks) {
+        this.favouriteBooks = favouriteBooks;
+    }
+
+    public Set<Author> getFavouriteAuthors() {
+        return favouriteAuthors;
+    }
+
+    public void setFavouriteAuthors(Set<Author> favouriteAuthors) {
+        this.favouriteAuthors = favouriteAuthors;
+    }
     // Getters and setters
 }

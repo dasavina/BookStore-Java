@@ -37,5 +37,21 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
+    public Set<User> getUsersWhoFavorited() {
+        return usersWhoFavorited;
+    }
+
+    public void setUsersWhoFavorited(Set<User> usersWhoFavorited) {
+        this.usersWhoFavorited = usersWhoFavorited;
+    }
 }
 
